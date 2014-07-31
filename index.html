@@ -1,0 +1,142 @@
+<!doctype html >
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+
+    <title>Add new event</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    <link rel="stylesheet" href="content/css/base.css">
+    <link rel="stylesheet" href="content/css/layout.css">
+    <link rel="stylesheet" href="content/css/modules.css">
+    <link rel="stylesheet" href="content/css/fundraisingtools.css">
+    <script src="lib/modernizr/modernizr.custom.js"></script>
+  </head>
+  <body>
+        <div class="l-container">
+            <header role="banner">
+                <a href="#home" title="Solid HTML Home page"><img src="content/images/solid-html-logo.png" alt="Solid HTML Logo" class="l-breather-horizontal"></a>
+                <nav role="navigation" class="purple-box">
+                    <ul class="menu l-clr">
+                        <li><a title="Home">Home</a></li>
+                        <li><a title="Text &amp; images">Text &amp; Images</a></li>
+                        <li><a title="Forms" class="is-selected" >Forms</a></li>
+                        <li><a title="Other examples">Other examples</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <main role="main">
+                <nav role="navigation">
+                    <ul class="breadcrumb l-clr">
+                        <li><a href="#fundraisingTools" title="Fundraising tools">Fundraising tools</a></li>
+                        <li><a href="#addpromoteevents" title="Add and promote events">Add and promote events</a></li>
+                        <li>Add a new event</li>
+                    </ul>
+                </nav>
+                <div class="l-row l-clr">
+                    <div class="l-col l-col-grey" role="form">
+                        <div class="l-breather">
+                            <form name="addEventForm" action="#" class="solid-form">
+                                <h1>Add fundraising event</h1>
+                                <h2>About the event</h2>
+                                <div>
+                                    <label for="eventName">Name of event*</label>
+                                    <input type="text" id="eventName" name="eventName" required aria-required="true">
+                                </div>
+                                <div class="clr">
+                                    <p class="box-date-input">
+                                        <label for="eventStartDate">Start date*</label>
+                                        <input type="text" id="eventStartDate" name="eventStartDate" placeholder="dd/mm/yyyy" required aria-required="true">
+                                        <a href="#pickStartDate"><img src="content/images/pick-date.png" alt="Pick date"></a>
+                                    </p>
+                                    <p class="box-date-input">
+                                        <label for="eventEndDate">End date*</label>
+                                        <input type="text" id="eventEndDate" name="eventEndDate" aria-required="true"  placeholder="dd/mm/yyyy" required>
+                                        <a href="#pickEndDate"><img src="content/images/pick-date.png" alt="Pick date"></a>
+                                    </p>
+                                </div>
+                                <div class="box-radio-checkbox">
+                                    <input type="checkbox" name="addEndDate" id="addEndDate" checked>
+                                    <label for="addEndDate">Add an end date (if different)</label>
+                                </div>
+                                <div>
+                                    <label for="eventLocation">Village town or city where event begins*</label>
+                                    <input type="text" id="eventLocation" name="eventLocation" required aria-required="true">
+                                </div>
+                                <div>
+                                    <fieldset class=" clr">
+                                        <legend>Is it open to people from other charities?</legend>
+                                        <div class="box-radio-checkbox">
+                                            <input type="radio" name="eventOpen" id="openYes" value="true">
+                                            <label for="openYes" class="label-non-bold">Yes - anyone can take part</label>
+                                        </div>
+                                        <div class="box-radio-checkbox">
+                                            <input type="radio" name="eventOpen" id="openNo" value="false" >
+                                            <label for="openNo" class="label-non-bold">No - it's just for people raising money for my charity</label>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div>
+                                    <label for="eventDescription">Event description</label>
+                                    <textarea name="eventDescription" id="eventDescription" cols="30" rows="5"></textarea>
+                                </div>
+                                <div>
+                                    <input type="submit" value="Create event">
+                                </div>
+                            </form>
+                            <p class="supplementary-right">* Indicates a required field</p>
+                        </div>
+                    </div>
+                    <div class="l-col l-col-grey">
+                        <div class="l-breather">
+                            <h2 class="l-underlined">Your events</h2>
+                            <ul class="event-list">
+                                <li class="l-underlined">
+                                    <time datetime="2014-04-10" class="date-board">
+                                        <div class="date-part-month">Apr</div>
+                                        <div class="date-part date-part-day">16</div>
+                                        <div class="date-part date-part-year">2012</div>
+                                    </time>
+                                    <div class="event-details">
+                                        <p>Competition in the west</p>
+                                        <p>Falmouth></p>
+                                        <a class="btn btn-promote" href="#promote" title="Promote">Promote</a>
+                                    </div>
+                                </li>
+                                  <li class="l-underlined">
+                                    <time datetime="2013-12-16" class="date-board">
+                                        <div class="date-part-month">Dec</div>
+                                        <div class="date-part date-part-day">16</div>
+                                        <div class="date-part date-part-year">2013</div>
+                                    </time>
+                                    <div class="event-details">
+                                        <p>Hackathon in Norway</p>
+                                        <p>Norway></p>
+                                        <a class="btn btn-promote" href="#promote" title="Promote">Promote</a>
+                                    </div>
+                                </li>
+                                  <li class="l-underlined">
+                                    <time datetime="2014-01-31" class="date-board">
+                                        <div class="date-part-month">Jan</div>
+                                        <div class="date-part date-part-day">2</div>
+                                        <div class="date-part date-part-year">2000</div>
+                                    </time>
+                                    <div class="event-details">
+                                        <p>Half pipe freestyle event</p>
+                                        <p>Surrey</p>
+                                        <a class="btn btn-promote" href="#promote" title="Promote">Promote</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer role="contentinfo" class="l-footer">
+                <p>Solid html</p>
+            </footer>
+        </div>
+    </body>
+</html>
