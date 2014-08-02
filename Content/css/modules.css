@@ -54,7 +54,7 @@
 /* form styles */
 .solid-form > div {
   margin-bottom:1em;
-  width:52%;
+  width:55%;
 }
 .solid-form textarea {
   width:100%;
@@ -86,7 +86,20 @@
 }
 .supplementary-right{
   float:right;
-  font-size:0.75em;
+}
+input[type=text]:invalid, textarea:invalid {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  outline:none;
+}
+input[type=text].input-invalid:invalid, textarea.input-invalid:invalid {
+  outline:none;
+  box-shadow:none;
+  -webkit-box-shadow: 0 0 5px red;
+  -moz-box-shadow: 0 0 5px red;
+  box-shadow: 0 0 5px red;
+  border: 1px solid red;
 }
 /* radio list styles */
 .box-radio-checkbox label {
@@ -113,10 +126,10 @@
   display:block;
 }
 .date-part-day {
-  font-size:27px;
+  font-size:1.6875em;
   color:#4d4840;
   font-weight:bold;
-  line-height:34px;
+  line-height:1.26em;
   border-left:solid 1px #bcb5b1;
   border-right:solid 1px #bcb5b1;
 }
@@ -124,17 +137,14 @@
 .date-part-month {
   background-color:#7b256c;
   color:#fff;
-  font-size:14px;
-  line-height:18px;
+  line-height:1.222em;
 }
 
 .date-part-year {
-  font-size:14px;
-  line-height:14px;
   font-weight:normal;
   border-left:solid 1px #bcb5b1;
   border-right:solid 1px #bcb5b1;
-  padding-bottom:4px;
+  padding-bottom:0.25em;
 }
 
 .event-list > li {
@@ -174,5 +184,9 @@
   width:150px;
   float:left;
   margin-top:12px;
+}
+
+.is-hidden {
+  display:none;
 }
 

@@ -49,8 +49,8 @@ table {
 body{
   background-color:#E8E3DF;
 }
-body, input {
-  font-family:arial, Helvetica, Georgia, sans-serif;
+body, html{
+  font-family: 'Open Sans' , sans-serif;
 }
 a {
   text-decoration:none;
@@ -59,13 +59,17 @@ a {
 a:hover {
   text-decoration:underline;
 }
+h1,h2,h3,h3 {
+  font-family: 'Bitter' , serif;
+  font-weight: 400;
+  font-weight:bold;
+
+}
 h1 {
   font-size:1.125em;
-  font-weight:bold;
   margin-bottom:2em;
 }
 h2 {
-  font-weight:bold;
   display:block;
   line-height:2em;
 }
@@ -87,11 +91,22 @@ input[type=text] {
   border:1px solid #ccc;
   text-indent:0.5em;
   font-size:0.75em;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  -moz-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
   height:2em;
 }
+
+input[type=text]:focus, textarea:focus {
+  outline:none;
+  box-shadow:none;
+  -webkit-box-shadow: 0 0 5px #5e47ff;
+  -moz-box-shadow: 0 0 5px #5e47ff;
+  box-shadow: 0 0 5px #5e47ff;
+  border: 1px solid #5e47ff;
+}
+
+
 
 input[type=radio] {
   vertical-align:middle;

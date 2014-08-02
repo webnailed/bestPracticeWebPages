@@ -7,7 +7,9 @@
 }
 
 .l-footer {
-  padding-top:120px;
+  margin-top:80px;
+  padding:20px;
+  border-top: 2px solid #7b256c;
 }
 /* column styles */
 .l-row {
@@ -46,4 +48,11 @@
 .l-underlined {
   border-bottom:solid 1px #d3cfc9;
 }
+.l-smaller {
+  font-size:0.875em;
+}
+.l-smaller2 {
+  font-size:0.75em;
+}
+
 

@@ -8,10 +8,12 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet" href="content/css/base.css">
     <link rel="stylesheet" href="content/css/layout.css">
     <link rel="stylesheet" href="content/css/modules.css">
-    <link rel="stylesheet" href="content/css/fundraisingtools.css">
     <script src="lib/modernizr/modernizr.custom.js"></script>
   </head>
   <body>
@@ -43,21 +45,21 @@
                                 <h2>About the event</h2>
                                 <div>
                                     <label for="eventName">Name of event*</label>
-                                    <input type="text" id="eventName" name="eventName" required aria-required="true">
+                                    <input type="text" id="eventName" name="eventName" autofocus required aria-required="true">
                                 </div>
                                 <div class="clr">
                                     <p class="box-date-input">
                                         <label for="eventStartDate">Start date*</label>
-                                        <input type="text" id="eventStartDate" name="eventStartDate" placeholder="dd/mm/yyyy" required aria-required="true">
+                                        <input type="text" id="eventStartDate" name="eventStartDate" placeholder="dd/mm/yyyy" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])\/(0[1-9]|1[012])\/[0-9]{4}" required aria-required="true">
                                         <a href="#pickStartDate"><img src="content/images/pick-date.png" alt="Pick date"></a>
                                     </p>
-                                    <p class="box-date-input">
+                                    <p id="endDatePanel" class="box-date-input">
                                         <label for="eventEndDate">End date*</label>
-                                        <input type="text" id="eventEndDate" name="eventEndDate" aria-required="true"  placeholder="dd/mm/yyyy" required>
+                                        <input type="text" id="eventEndDate" name="eventEndDate" placeholder="dd/mm/yyyy" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])\/(0[1-9]|1[012])\/[0-9]{4}" required aria-required="true">
                                         <a href="#pickEndDate"><img src="content/images/pick-date.png" alt="Pick date"></a>
                                     </p>
                                 </div>
-                                <div class="box-radio-checkbox">
+                                <div class="box-radio-checkbox is-hidden" aria-hidden="true">
                                     <input type="checkbox" name="addEndDate" id="addEndDate" checked>
                                     <label for="addEndDate">Add an end date (if different)</label>
                                 </div>
@@ -86,7 +88,7 @@
                                     <input type="submit" value="Create event">
                                 </div>
                             </form>
-                            <p class="supplementary-right">* Indicates a required field</p>
+                            <p class="supplementary-right l-smaller2">* Indicates a required field</p>
                         </div>
                     </div>
                     <div class="l-col l-col-grey">
@@ -95,33 +97,33 @@
                             <ul class="event-list">
                                 <li class="l-underlined">
                                     <time datetime="2014-04-10" class="date-board">
-                                        <div class="date-part-month">Apr</div>
-                                        <div class="date-part date-part-day">16</div>
-                                        <div class="date-part date-part-year">2012</div>
+                                        <div class="date-part-month l-smaller">Apr</div>
+                                        <div class="date-part-day">16</div>
+                                        <div class="date-part-year l-smaller">2012</div>
                                     </time>
                                     <div class="event-details">
                                         <p>Competition in the west</p>
-                                        <p>Falmouth></p>
+                                        <p>Falmouth</p>
                                         <a class="btn btn-promote" href="#promote" title="Promote">Promote</a>
                                     </div>
                                 </li>
                                   <li class="l-underlined">
                                     <time datetime="2013-12-16" class="date-board">
-                                        <div class="date-part-month">Dec</div>
-                                        <div class="date-part date-part-day">16</div>
-                                        <div class="date-part date-part-year">2013</div>
+                                        <div class="date-part-month l-smaller">Dec</div>
+                                        <div class="date-part-day">16</div>
+                                        <div class="date-part-year l-smaller">2013</div>
                                     </time>
                                     <div class="event-details">
                                         <p>Hackathon in Norway</p>
-                                        <p>Norway></p>
+                                        <p>Norway</p>
                                         <a class="btn btn-promote" href="#promote" title="Promote">Promote</a>
                                     </div>
                                 </li>
                                   <li class="l-underlined">
                                     <time datetime="2014-01-31" class="date-board">
-                                        <div class="date-part-month">Jan</div>
-                                        <div class="date-part date-part-day">2</div>
-                                        <div class="date-part date-part-year">2000</div>
+                                        <div class="date-part-month l-smaller">Jan</div>
+                                        <div class="date-part-day">2</div>
+                                        <div class="date-part-year l-smaller">2000</div>
                                     </time>
                                     <div class="event-details">
                                         <p>Half pipe freestyle event</p>
@@ -135,8 +137,9 @@
                 </div>
             </main>
             <footer role="contentinfo" class="l-footer">
-                <p>Solid html</p>
+                <p class="l-smaller2">Solid HTML</p>
             </footer>
         </div>
+        <script src="scripts/addEventForm.js"></script>
     </body>
 </html>
