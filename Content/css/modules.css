@@ -44,6 +44,11 @@
   content: ">";
   padding:0 5px;
 }
+.breadcrumb > li:last-child:after {
+  padding:0;
+  content:none
+}
+
 .breadcrumb > li a {
   color:#9d938d;
   text-decoration:none
@@ -55,6 +60,11 @@
 .solid-form > div {
   margin-bottom:1em;
   width:55%;
+  position:relative;
+  float:left;
+}
+.solid-form > div.no-bottom {
+  margin-bottom:0;
 }
 .solid-form textarea {
   width:100%;
@@ -72,6 +82,9 @@
   border-radius: 5px 5px 5px 5px;
   height:2em
 }
+.solid-form select {
+   height:2em
+}
 .box-date-input {
   width:50%;
   float:left;
@@ -83,23 +96,36 @@
 .box-date-input img {
   display:inline-block;
   vertical-align:middle;
+  margin-left:5px;
 }
 .supplementary-right{
   float:right;
 }
-input[type=text]:invalid, textarea:invalid {
+input[type=text]:invalid, textarea:invalid, select:invalid {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
   outline:none;
 }
-input[type=text].input-invalid:invalid, textarea.input-invalid:invalid {
+input[type=text].input-invalid:invalid, textarea.input-invalid:invalid, select.input-invalid:invalid{
   outline:none;
   box-shadow:none;
   -webkit-box-shadow: 0 0 5px red;
   -moz-box-shadow: 0 0 5px red;
   box-shadow: 0 0 5px red;
   border: 1px solid red;
+}
+
+.input-invalid-label {
+  position: absolute;
+  left: 0;
+  margin-left: 350px;
+  font-size: 0.75em;
+  color: red;
+  top: 30px;
+  width: 260px;
+  height:50px;
+  line-height:1.4em;
 }
 /* radio list styles */
 .box-radio-checkbox label {
@@ -146,7 +172,9 @@ input[type=text].input-invalid:invalid, textarea.input-invalid:invalid {
   border-right:solid 1px #bcb5b1;
   padding-bottom:0.25em;
 }
-
+html:not(.no-js) .event-list {
+  display:none;
+}
 .event-list > li {
   float:left;
   border-bottom:solid 1px #d3cfc9;

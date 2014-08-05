@@ -65,15 +65,15 @@ describe('Checkbox state toggler tests - ',function() {
   });
 });
 describe('Form validation object tests', function() {
-  var formValidation = {},
-    noop = function() {};
+  var formValidation = {};
+  var noop = function() {};
   var form = document.createElement("FORM");
   var testField = document.createElement("INPUT");
   var mockedForm = {
 
   };
 
-  it('Throws a type error when adding anyhting but an html checkbox object', function() {
+  it('Throws a type error if trying to pass anything but a form object to the contructor', function() {
     expect(function() {
       new FormValidation('');
     }).toThrow();
@@ -93,20 +93,83 @@ describe('Form validation object tests', function() {
       new FormValidation(document.createElement("INPUT"), noop);
     }).toThrow();
   });
+  it('Throws a type error if trying to pass anything but a function for the successFn in the contructor', function() {
+    expect(function() {
+      new FormValidation({'form':form,'successFn':''});
+    }).toThrow();
+    expect(function() {
+      new FormValidation({'form':form,'successFn':{}});
+    }).toThrow();
+    expect(function() {
+      new FormValidation({'form':form,'successFn':[]});
+    }).toThrow();
+    expect(function() {
+      new FormValidation({'form':form,'successFn':1});
+    }).toThrow();
+  });
+  it('Does not throw an error when omitting the successFn parameter', function() {
+    expect(function() {
+      new FormValidation({'form':form});
+    }).not.toThrow();
+  });
   it('Attaches passed form object onto the Object via the contructor', function() {
-    formValidation = new FormValidation(form);
+    formValidation = new FormValidation({'form':form});
     expect(formValidation.form).toEqual(form);
+  });
+  it('Attaches passed success callback onto the Object via the contructor', function() {
+    formValidation = new FormValidation({'form':form,'successFn':noop});
+    expect(formValidation.successFn).toEqual(noop);
   });
   describe('Validate method tests', function() {
     it("It passes validation for an empty form", function() {
-        formValidation = new FormValidation(form);
+        formValidation = new FormValidation({'form':form});
         formValidation.validate();
         expect(formValidation.valid).toEqual(true);
     });
+    it("It attaches blur event listener to field when validating", function() {
+        var testField =  document.createElement("INPUT");
+        testField.required = true;
+        form.appendChild(testField);
+        formValidation = new FormValidation({'form':form});
+        expect(testField.blurListenerAdded).toBeFalsy();
+        formValidation.validate();
+        expect(testField.blurListenerAdded).toEqual(true);
+    });
   });
-  describe('isValidField  method tests', function() {
+  describe('hasValidationAttributes method tests', function() {
+    it("It returns false for an input with no attributes", function() {
+        var testField =  document.createElement("INPUT");
+        formValidation = new FormValidation({'form':form});
+        expect(formValidation.hasValidationAttributes(testField)).toEqual(false);
+    });
+    it("It returns true for an input with validation required", function() {
+        var testField =  document.createElement("INPUT");
+        formValidation = new FormValidation({'form':form});
+        testField.required = true;
+        expect(formValidation.hasValidationAttributes(testField)).toEqual(true);
+    });
+    it("It returns true for an input with required validation", function() {
+        var testField =  document.createElement("INPUT");
+        formValidation = new FormValidation({'form':form});
+        testField.required = true;
+        expect(formValidation.hasValidationAttributes(testField)).toEqual(true);
+    });
+    it("It returns true for an input with maxLength validation", function() {
+        var testField =  document.createElement("INPUT");
+        formValidation = new FormValidation({'form':form});
+        testField.setAttribute('maxLength','10');
+        expect(formValidation.hasValidationAttributes(testField)).toEqual(true);
+    });
+    it("It returns true for an input with pattern validation", function() {
+        var testField =  document.createElement("INPUT");
+        formValidation = new FormValidation({'form':form});
+        testField.setAttribute('pattern','/g');
+        expect(formValidation.hasValidationAttributes(testField)).toEqual(true);
+    });
+  });
+  describe('isValidField method tests', function() {
     beforeEach(function() {
-      formValidation = new FormValidation(form);
+      formValidation = new FormValidation({'form':form});
       testField = document.createElement("INPUT");
     });
     it('It passes validation if the field is disabled', function() {
@@ -137,11 +200,6 @@ describe('Form validation object tests', function() {
         testField.required = true;
         expect(formValidation.isValidField(testField)).toEqual(false);
     });
-    it('It passes validation for a checkbox with minlength set', function() {
-        testField.setAttribute('type', 'checkbox');
-        testField.setAttribute('minLength', '20');
-        expect(formValidation.isValidField(testField)).toEqual(true);
-    });
     it('It passes validation for a checkbox with maxlength set', function() {
         testField.setAttribute('type', 'checkbox');
         testField.setAttribute('maxLength', '0');
@@ -155,39 +213,11 @@ describe('Form validation object tests', function() {
         testField.setAttribute('value', 'test');
         expect(formValidation.isValidField(testField)).toEqual(true);
     });
-    it('It fails validation where current value is less than minlength attribute', function() {
-        testField.setAttribute('type', 'text');
-        testField.setAttribute('value', 'test');
-        testField.setAttribute('minLength', '5');
-        expect(formValidation.isValidField(testField)).toEqual(false);
-    });
-    it('It passes validation where current value is greater or equal to minlength attribute', function() {
-        testField.setAttribute('type', 'text');
-        testField.setAttribute('value', 'test');
-        testField.setAttribute('minLength', '4');
-        expect(formValidation.isValidField(testField)).toEqual(true);
-        testField.setAttribute('value', 'test1');
-        expect(formValidation.isValidField(testField)).toEqual(true);
-    });
     it('It fails validation where current value is greater than maxlength attribute', function() {
         testField.setAttribute('type', 'text');
         testField.setAttribute('value', 'test');
         testField.setAttribute('maxLength', '3');
         expect(formValidation.isValidField(testField)).toEqual(false);
-    });
-    it('It passes validation where current value is greater or equal to minlength attribute and less or equal to maxLngth attribute ', function() {
-        testField.setAttribute('type', 'text');
-        testField.setAttribute('value', 'test');
-        testField.setAttribute('minLength', '4');
-        testField.setAttribute('maxLength', '6');
-        testField.setAttribute('value', 'test1');
-        expect(formValidation.isValidField(testField)).toEqual(true);
-    });
-    it('It passes validation where supplied minLength is a string', function() {
-        testField.setAttribute('type', 'text');
-        testField.setAttribute('value', 'test');
-        testField.setAttribute('minLength', 'dd');
-        expect(formValidation.isValidField(testField)).toEqual(true);
     });
     it('It passes validation where supplied maxLength is a string', function() {
         testField.setAttribute('type', 'text');
@@ -205,7 +235,7 @@ describe('Form validation object tests', function() {
         testField.setAttribute('value', '1.00');
         expect(formValidation.isValidField(testField)).toEqual(true);
     });
-    it('It fails validation if the current field value does not matchthe supplied pattern expression', function() {
+    it('It fails validation if the current field value does not match the supplied pattern expression', function() {
         testField.setAttribute('type', 'text');
         testField.setAttribute('pattern', '\\d+(\\.\\d{2})?');
         testField.setAttribute('value', 'bad');
@@ -216,6 +246,67 @@ describe('Form validation object tests', function() {
         expect(formValidation.isValidField(testField)).toEqual(false);
         testField.setAttribute('value', '1.999');
         expect(formValidation.isValidField(testField)).toEqual(false);
+    });
+  });
+});
+describe('ItemsCollection tests - ',function() {
+  it('throws an error when trying to add anythting but an array or undefined to the contructor', function() {
+    expect(function() {new ItemsCollection();}).not.toThrow();
+    expect(function() {new ItemsCollection([{test:'test'},{test:'test2'}]);}).not.toThrow();
+    expect(function() {new ItemsCollection({});}).toThrow();
+    expect(function() {new ItemsCollection('gg');}).toThrow();
+    expect(function() {new ItemsCollection(3);}).toThrow();
+  });
+  it('throws an error when trying to add anythting but an array or undefined to the contructor', function() {
+    expect(function() {
+        new ItemsCollection([],'s');
+      }).toThrow();
+      expect(function() {
+         new ItemsCollection([],{});
+      }).toThrow();
+      expect(function() {
+         new ItemsCollection([],[]);
+      }).toThrow();
+      expect(function() {
+         new ItemsCollection([],4);
+      }).toThrow();
+      expect(function() {
+         new ItemsCollection([]);
+      }).not.toThrow();
+      expect(function() {
+         new ItemsCollection([],function() {});
+      }).not.toThrow();
+  });
+  it('adds the passed array onto the collection object', function() {
+    var arrayTest = [{test:'test'},{test:'test2'}];
+    expect(new ItemsCollection(arrayTest).items).toEqual(arrayTest);
+  });
+  it('sets the items array property to an empty array if no array is passed in the contructor', function() {
+    expect(Array.isArray(new ItemsCollection().items)).toEqual(true);
+    expect(new ItemsCollection().items.length).toEqual(0);
+  });
+  it('adds a passed object to the items array', function() {
+    var passedObject = {'eventName':'blah'},
+        itemsCollection = new ItemsCollection([{test:'test'},{test:'test2'}]);
+    expect(itemsCollection.items.length).toEqual(2);
+    itemsCollection.add(passedObject);
+    expect(itemsCollection.items.length).toEqual(3);
+    expect(itemsCollection.items.pop()).toEqual(passedObject);
+  });
+  describe('renderItemHtml method tests - ',function() {
+    it('interpolates the template with data correctly', function() {
+      var testItem = {test:'Example1', test2:'Example2'},
+          itemsCollection = new ItemsCollection([]);
+          templateSampleHtml = '<p>{{test}}</p><span>{{test2}}</span>';
+      expect(itemsCollection.renderItemHtml(templateSampleHtml,testItem)).toEqual('<p>Example1</p><span>Example2</span>');
+    });
+  });
+   describe('renderListHtml method tests - ',function() {
+    it('generate item lists correctly', function() {
+      var testItem = {test:'Example1', test2:'Example2'},
+          itemsCollection = new ItemsCollection([{test:'Example1', test2:'Example2'},{test:'Example3', test2:'Example4'}]);
+          templateListHtml = '<p>{{test}}</p><span>{{test2}}</span>';
+      expect(itemsCollection.renderListHtml(templateSampleHtml,testItem)).toEqual('<p>Example1</p><span>Example2</span><p>Example3</p><span>Example4</span>');
     });
   });
 });
