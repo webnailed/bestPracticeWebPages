@@ -23,7 +23,7 @@ window.addEventListener('load', function() {
             eventDescription:'xcxxcxc'
           }
         ],
-        eventItemTemplate = '<li class="l-underlined"> \
+        eventItemTemplate = '<li class="l-underlined l-clr"> \
                                <time datetime="{{eventStartDate}}" class="date-board"> \
                                     <div class="date-part-month l-smaller">{{month}}</div> \
                                     <div class="date-part-day">{{day}}</div> \

@@ -12,15 +12,15 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="content/css/base.css">
-    <link rel="stylesheet" href="content/css/layout.css">
-    <link rel="stylesheet" href="content/css/modules.css">
+    <link rel="stylesheet" href="content/css/mobileFirst.css">
+    <link rel="stylesheet" href="content/css/queries.css">
     <script src="lib/modernizr/modernizr.custom.js"></script>
   </head>
   <body>
         <div class="l-container">
             <header role="banner">
-                <a href="#home" title="Solid HTML Home page"><img src="content/images/solid-html-logo.png" alt="Solid HTML Logo" class="l-breather-horizontal"></a>
-                <nav role="navigation" class="purple-box">
+                <a href="#home" title="Solid HTML Home page"><img src="content/images/solid-html-logo.png" alt="Solid HTML Logo" class="site-logo"></a>
+                <nav role="navigation">
                     <ul class="l-menu l-clr">
                         <li><a title="Home">Home</a></li>
                         <li><a title="Text &amp; images">Text &amp; Images</a></li>
@@ -54,7 +54,7 @@
                                         <option value="2">Fun run</option>
                                     </select>
                                 </div>
-                                <div class="clr no-bottom ">
+                                <div class="l-clr no-bottom ">
                                     <p class="box-date-input">
                                         <label for="eventStartDate">Start date*</label>
                                         <input type="text" id="eventStartDate" name="eventStartDate" placeholder="dd/mm/yyyy" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])\/(0[1-9]|1[012])\/[0-9]{4}" required aria-required="true">
@@ -102,7 +102,7 @@
                         <div class="l-breather">
                             <h2 class="l-underlined">Your events</h2>
                             <ul id="eventList" class="event-list">
-                                <li class="l-underlined">
+                                <li class="l-underlined l-clr">
                                     <time datetime="2014-04-10" class="date-board">
                                         <div class="date-part-month l-smaller">Apr</div>
                                         <div class="date-part-day">16</div>

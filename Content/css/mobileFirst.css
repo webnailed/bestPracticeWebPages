@@ -1,3 +1,90 @@
+.l-container {
+  background-color:#fff;
+  width:100%;
+  padding:2%;
+  margin:0 auto;
+}
+
+.l-footer {
+  margin-top:2em;
+  padding:1em;
+  border-top: 2px solid #7b256c;
+}
+
+.l-menu > li {
+  float:left;
+  width:49%;
+  text-align:center;
+  background-color:#7b256c;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin:0 0 1% 1%;
+  height:1.75em;
+}
+
+.l-menu > li:nth-child(odd) {
+  margin-left:0;
+}
+
+.l-menu > li a {
+  color:#fff;
+  display:block;
+  font-weight:bold;
+  height:100%;
+  line-height:1.75em;
+  vertical-align:middle;
+}
+
+.l-menu > li > a:hover {
+  text-decoration:underline;
+}
+.l-menu > li > a.is-selected {
+  background-color:#fff;
+  color:#7b256c;
+  border:2px solid #7b256c;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  line-height:1.7em;
+}
+/* column styles */
+.l-row {
+  overflow:hidden;
+}
+.l-row > .l-col {
+  margin:0 0 2% 0;
+}
+.l-row > .l-col:last-child {
+  margin-right:0;
+}
+.l-col-grey {
+  background-color:#ECECEC;
+}
+.l-breather {
+  padding:1em
+}
+.l-breather-horizontal {
+  padding:1em 0
+}
+.l-clr:after {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.l-underlined {
+  border-bottom:solid 1px #d3cfc9;
+}
+.l-smaller {
+  font-size:0.875em;
+}
+.l-smaller2 {
+  font-size:0.75em;
+}
+
+/* page specific styles and modules */
 
 .purple-box {
   background-color:#7b256c;
@@ -39,9 +126,6 @@
 /* form styles */
 .solid-form > div {
   margin-bottom:1em;
-  width:58%;
-  position:relative;
-  float:left;
 }
 .solid-form > div.no-bottom {
   margin-bottom:0;
@@ -63,15 +147,20 @@
   height:2em
 }
 .solid-form select {
-   height:2em
+   height:2em;
+   width:100%;
 }
 .box-date-input {
   width:50%;
   float:left;
   padding-bottom:0.5em;
 }
+.box-date-input .input-invalid-label {
+  display:none;
+}
 .box-date-input > input[type=text] {
-  width:55%;
+  width:70%;
+  max-width:90px;
 }
 .box-date-input img {
   display:inline-block;
@@ -97,15 +186,11 @@ input[type=text].input-invalid:invalid, textarea.input-invalid:invalid, select.i
 }
 
 .input-invalid-label {
-  position: absolute;
-  left: 0;
-  margin-left: 340px;
   font-size: 0.75em;
   color: red;
-  top: 30px;
-  width: 260px;
-  height:50px;
   line-height:1.4em;
+  margin-top:0.5em;
+  clear:left;
 }
 /* radio list styles */
 .box-radio-checkbox label {
@@ -121,11 +206,12 @@ input[type=text].input-invalid:invalid, textarea.input-invalid:invalid, select.i
 /* date board */
 .date-board {
   float:left;
-  width:50px;
+  width:25%;
+  max-width:50px;
   text-align:center;
   background-color:#fff;
   border-bottom:solid 4px #7b256c;
-  margin:0.4em 20px 0 0;
+  margin:0.4em 5% 0 0;
 }
 
 .date-part {
@@ -156,9 +242,9 @@ html:not(.no-js) .event-list {
   display:none;
 }
 .event-list > li {
-  float:left;
   border-bottom:solid 1px #d3cfc9;
-  padding:20px 0;
+  padding:1em 0;
+  min-width:280px;
 }
 .event-list > li:last-child {
   border-bottom:none;
@@ -169,7 +255,7 @@ html:not(.no-js) .event-list {
   text-decoration:underline;
   line-height:1.5em;
   float:left;
-  width:170px;
+  width:70%
 }
 
 /* buttons */
@@ -194,4 +280,6 @@ html:not(.no-js) .event-list {
 .is-hidden {
   display:none;
 }
+
+
 
